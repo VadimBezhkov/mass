@@ -248,7 +248,6 @@ namespace ConsoleApp2
                             Console.WriteLine($"Find the number of positive numbers in a matrix= {countPositive}");
 
                             break;
-
                         //Find the number of negative numbers in a matrix
                         case "2":
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -258,16 +257,12 @@ namespace ConsoleApp2
                             Console.WriteLine($"Find the number of negative numbers in a matrix= {countNegative}");
 
                             break;
-
-
                         //Sort matrix elements from left to right
                         case "3":
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Clear();
-                            
+                            Console.Clear();                        
 
                             SortMax(mass,sortMax);
-
                             Result(mass);
 
                             break;
@@ -277,7 +272,6 @@ namespace ConsoleApp2
 
                             sortMax = false;
                             SortMax(mass, sortMax);
-
                             Result(mass);
 
                             break;
