@@ -204,6 +204,18 @@ namespace ConsoleApp2
             Console.WriteLine("Inversion of matrix elements - enter 5\n");
             Console.WriteLine("Introduce a new array - enter 6\n");
         }
+        //input of array elements
+        static void Input(int arr1DimLen, int arr2DimLen, double[,] mass)
+        {
+            for (int y = 0; y < arr1DimLen; y++)
+            {
+                for (int x = 0; x < arr2DimLen; x++)
+                {
+                    Console.WriteLine("X:" + y + "\tY:" + x);
+                    mass[y, x] = check1();
+                }
+            }
+        }
         static void Main(string[] args)
         {
             while (true)
@@ -225,18 +237,11 @@ namespace ConsoleApp2
                 int arr1DimLen = mass.GetLength(0);
                 int arr2DimLen = mass.GetLength(1);
 
-                //input of array elements
-                for (int y = 0; y < arr1DimLen; y++)
-                {
-                    for (int x = 0; x < arr2DimLen; x++)
-                    {
-                        Console.WriteLine("X:" + y + "\tY:" + x);
-                        mass[y, x] = check1();
-                    }
-                }
+                Input(arr1DimLen,arr2DimLen,mass);
 
                 Console.WriteLine();
                 Console.WriteLine("array output:\n");
+
                 result(mass);
 
                 while (exit)
