@@ -9,7 +9,7 @@ namespace ConsoleApp2
     class Program
     {
         //array output
-        static void result(double[,] mass)
+        static void Result(double[,] mass)
         {
             int arr1DimLen = mass.GetLength(0);
             int arr2DimLen = mass.GetLength(1);
@@ -107,7 +107,7 @@ namespace ConsoleApp2
             }
         }
         //input validation
-        static double check1()
+        static double Check1()
         {
             double number;
             while (true)
@@ -127,7 +127,7 @@ namespace ConsoleApp2
             }
         }
         //input validation
-        static int check()
+        static int Check()
         {
             int number;
 
@@ -212,7 +212,7 @@ namespace ConsoleApp2
                 for (int x = 0; x < arr2DimLen; x++)
                 {
                     Console.WriteLine("X:" + y + "\tY:" + x);
-                    mass[y, x] = check1();
+                    mass[y, x] = Check1();
                 }
             }
         }
@@ -223,10 +223,10 @@ namespace ConsoleApp2
                 // input of array dimension
                 Console.ResetColor();
                 Console.Write("enter the number of lines of the array:\t");
-                int elements1 = check();
+                int elements1 = Check();
 
                 Console.Write("enter the number of columns of the array:");
-                int elements2 = check();
+                int elements2 = Check();
                 Console.Clear();
 
                 //variable declaration
@@ -242,7 +242,7 @@ namespace ConsoleApp2
                 Console.WriteLine();
                 Console.WriteLine("array output:\n");
 
-                result(mass);
+                Result(mass);
 
                 while (exit)
                 {
@@ -280,7 +280,7 @@ namespace ConsoleApp2
 
                             sortMax(mass);
 
-                            result(mass);
+                            Result(mass);
 
                             break;
                         case "4":
@@ -289,7 +289,7 @@ namespace ConsoleApp2
 
                             sortMin(mass);
 
-                            result(mass);
+                            Result(mass);
 
                             break;
                         //Inversion of matrix elements
