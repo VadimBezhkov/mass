@@ -237,7 +237,7 @@ namespace ConsoleApp2
                 int arr1DimLen = mass.GetLength(0);
                 int arr2DimLen = mass.GetLength(1);
 
-                Input(arr1DimLen,arr2DimLen,mass);
+                Input(arr1DimLen, arr2DimLen, mass);
 
                 Console.WriteLine();
                 Console.WriteLine("array output:\n");
@@ -266,21 +266,20 @@ namespace ConsoleApp2
                         case "2":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
-                            
-                                int countNegative = NegativeNumbers(arr2DimLen, arr1DimLen, mass);
-                                Console.WriteLine($"Find the number of negative numbers in a matrix= {countNegative}");
 
-                                break;
-                            
+                            int countNegative = NegativeNumbers(arr2DimLen, arr1DimLen, mass);
+                            Console.WriteLine($"Find the number of negative numbers in a matrix= {countNegative}");
+
+                            break;
+
 
                         //Sort matrix elements from left to right
                         case "3":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
 
-                            {
-                                sortMax(mass);
-                            }
+                            sortMax(mass);
+
                             result(mass);
 
                             break;
@@ -288,9 +287,8 @@ namespace ConsoleApp2
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
 
-                            {
-                                sortMin(mass);
-                            }
+                            sortMin(mass);
+
                             result(mass);
 
                             break;
