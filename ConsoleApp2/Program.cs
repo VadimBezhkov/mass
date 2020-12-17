@@ -189,6 +189,7 @@ namespace ConsoleApp2
             Console.WriteLine("Sort matrix elements from right to left - enter 4\n");
             Console.WriteLine("Inversion of matrix elements - enter 5\n");
             Console.WriteLine("Introduce a new array - enter 6\n");
+            Console.WriteLine("Exit programm -enter 7\n");
         }
         //input of array elements
         static void Input(int arr1DimLen, int arr2DimLen, double[,] mass)
@@ -287,6 +288,11 @@ namespace ConsoleApp2
                         case "6":
 
                             exit = false;
+
+                            break;
+                        case "7":
+
+                            Environment.Exit(0);
 
                             break;
                     }
