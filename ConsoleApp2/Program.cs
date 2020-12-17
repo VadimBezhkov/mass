@@ -150,7 +150,7 @@ namespace ConsoleApp2
         // Finding the number of positive numbers
         static int PositiveNumbers(int arr2DimLen, int arr1DimLen, double[,] mass)
         {
-            int positiveNumbers=0;
+            int positiveNumbers = 0;
             for (int y = 0; y < arr2DimLen; y++)
             {
                 for (int x = 0; x < arr1DimLen; x++)
@@ -179,6 +179,19 @@ namespace ConsoleApp2
                 }
             }
             return negativeNumbers;
+        }
+        static void Inversion(int arr1DimLen, int arr2DimLen, double[,] mass)
+        {
+
+            for (int y = arr1DimLen - 1; y >= 0; y--)
+            {
+                for (int x = arr2DimLen - 1; x >= 0; x--)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(mass[y, x] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
         //array actions menu
         static void Print()
@@ -228,7 +241,7 @@ namespace ConsoleApp2
 
                 while (exit)
                 {
-                    
+
                     Print();
                     string chose = Console.ReadLine();
 
@@ -238,22 +251,22 @@ namespace ConsoleApp2
                         case "1":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
-                            {
-                                int countPositive = PositiveNumbers(arr2DimLen, arr1DimLen,mass);
-                                Console.WriteLine($"Find the number of positive numbers in a matrix= {countPositive}");
 
-                                break;
-                            }
+                            int countPositive = PositiveNumbers(arr2DimLen, arr1DimLen, mass);
+                            Console.WriteLine($"Find the number of positive numbers in a matrix= {countPositive}");
+
+                            break;
+
                         //Find the number of negative numbers in a matrix
                         case "2":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
-                            {
+                            
                                 int countNegative = NegativeNumbers(arr2DimLen, arr1DimLen, mass);
                                 Console.WriteLine($"Find the number of negative numbers in a matrix= {countNegative}");
 
                                 break;
-                            }
+                            
 
                         //Sort matrix elements from left to right
                         case "3":
@@ -280,27 +293,14 @@ namespace ConsoleApp2
                         case "5":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
-                            {
 
-                                for (int y = arr1DimLen - 1; y >= 0; y--)
-                                {
-                                    for (int x = arr2DimLen - 1; x >= 0; x--)
-                                    {
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.Write(mass[y, x] + "\t");
-                                    }
-                                    Console.WriteLine();
-                                }
-
-                            }
+                            Inversion(arr1DimLen, arr2DimLen, mass);
 
                             break;
                         //Introduce a new array 
                         case "6":
 
-                            {
-                                exit = false;
-                            }
+                            exit = false;
 
                             break;
                     }
