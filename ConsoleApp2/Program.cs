@@ -8,12 +8,31 @@ namespace ConsoleApp2
 {
     class Program
     {
-        static void sortMax(decimal[,]mass)
+        //array output
+        static void result(double[,] mass)
         {
             int arr1DimLen = mass.GetLength(0);
             int arr2DimLen = mass.GetLength(1);
 
-            for (int k = 0; k < mass.Length; k++)
+            for (int y = 0; y < arr1DimLen; y++)
+            {
+                for (int x = 0; x < arr2DimLen; x++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(mass[y, x] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        //sort an array in ascending order
+        static void sortMax(double[,] mass)
+        {
+
+            int arr1DimLen = mass.GetLength(0);
+            int arr2DimLen = mass.GetLength(1);
+
+            for (int n = 0; n < mass.Length; n++)
             {
                 bool isLastRow = false;
                 for (int i = 0; i < arr1DimLen; i++)
@@ -26,7 +45,7 @@ namespace ConsoleApp2
                         {
                             if (mass[i, j] > mass[i, j + 1])
                             {
-                                decimal temp = mass[i, j];
+                                double temp = mass[i, j];
                                 mass[i, j] = mass[i, j + 1];
                                 mass[i, j + 1] = temp;
                             }
@@ -37,7 +56,7 @@ namespace ConsoleApp2
                             {
                                 if (mass[i, j] > mass[i + 1, 0])
                                 {
-                                    decimal temp = mass[i, j];
+                                    double temp = mass[i, j];
                                     mass[i, j] = mass[i + 1, 0];
                                     mass[i + 1, 0] = temp;
                                 }
@@ -47,12 +66,13 @@ namespace ConsoleApp2
                 }
             }
         }
-        static void sortMin(decimal[,] mass)
+        //sorting the array in descending order
+        static void sortMin(double[,] mass)
         {
             int arr1DimLen = mass.GetLength(0);
             int arr2DimLen = mass.GetLength(1);
 
-            for (int k = 0; k < mass.Length; k++)
+            for (int n = 0; n < mass.Length; n++)
             {
                 bool isLastRow = false;
                 for (int i = 0; i < arr1DimLen; i++)
@@ -65,18 +85,19 @@ namespace ConsoleApp2
                         {
                             if (mass[i, j] < mass[i, j + 1])
                             {
-                                decimal temp = mass[i, j];
+                                double temp = mass[i, j];
                                 mass[i, j] = mass[i, j + 1];
                                 mass[i, j + 1] = temp;
                             }
                         }
+
                         else
                         {
                             if (!isLastRow)
                             {
                                 if (mass[i, j] < mass[i + 1, 0])
                                 {
-                                    decimal temp = mass[i, j];
+                                    double temp = mass[i, j];
                                     mass[i, j] = mass[i + 1, 0];
                                     mass[i + 1, 0] = temp;
                                 }
@@ -86,13 +107,14 @@ namespace ConsoleApp2
                 }
             }
         }
-        static decimal check1()
+        //input validation
+        static double check1()
         {
-            decimal number;
+            double number;
             while (true)
             {
                 var input = Console.ReadLine();
-                var condition = decimal.TryParse(input, out number);
+                var condition = double.TryParse(input, out number);
                 if (condition)
                 {
                     return number;
@@ -103,6 +125,7 @@ namespace ConsoleApp2
                 }
             }
         }
+        //input validation
         static int check()
         {
             int number;
@@ -122,130 +145,149 @@ namespace ConsoleApp2
         }
         static void Main(string[] args)
         {
-
-            Console.Write("enter the number of lines of the array:\t");
-            int elements1 = check();
-            Console.Write("enter the number of columns of the array:");
-            int elements2 = check();
-            Console.Clear();
-
-            int value = 0;
-            int value1 = 0;
-            var exit = true;
-
-            decimal[,] mass = new decimal[elements1, elements2];
-            int height = mass.GetLength(0);
-            int width = mass.GetLength(1);
-
-            for (int y = 0; y < height; y++)
+            while (true)
             {
+                // input of array dimension
+                Console.ResetColor();
+                Console.Write("enter the number of lines of the array:\t");
+                int elements1 = check();
 
-                for (int x = 0; x < width; x++)
+                Console.Write("enter the number of columns of the array:");
+                int elements2 = check();
+                Console.Clear();
+
+                //variable declaration
+                int positiveNumbers = 0;
+                int negativeNumbers = 0;
+                var exit = true;
+
+                //and reading columns and rows and reading columns and rows
+                double[,] mass = new double[elements1, elements2];
+                int arr1DimLen = mass.GetLength(0);
+                int arr2DimLen = mass.GetLength(1);
+
+                //input of array elements
+                for (int y = 0; y < arr1DimLen; y++)
                 {
-                    Console.WriteLine("X:"+ y + "\tY:" + x);
-                    mass[y, x] = check1();
+                    for (int x = 0; x < arr2DimLen; x++)
+                    {
+                        Console.WriteLine("X:" + y + "\tY:" + x);
+                        mass[y, x] = check1();
+                    }
                 }
-            }
 
-            Console.WriteLine();
-            Console.WriteLine("array output:\n");
-
-            for (int y = 0; y < height; y++)
-            {
-                for (int x = 0; x < width; x++)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(mass[y, x] + "\t");
-                }
                 Console.WriteLine();
-            }
+                Console.WriteLine("array output:\n");
+                result(mass);
 
-            while (exit)
-            { 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Find the number of positive numbers in a matrix - enter 1\n");
-                Console.WriteLine("Find the number of negative numbers in a matrix - enter 2\n");
-                Console.WriteLine("Sort matrix elements from left to right - enter 3\n");
-                Console.WriteLine("Sort matrix elements from right to left - enter 4\n");
-                Console.WriteLine("Inversion of matrix elements - enter 5");
-                Console.WriteLine("Exit - enter 6");
-                string chose = Console.ReadLine();
-
-                switch (chose)
+                while (exit)
                 {
-                    case "1":
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Clear();
-                        {
-                            for (int y = 0; y < width; y++)
+                    //array actions menu
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Find the number of positive numbers in a matrix - enter 1\n");
+                    Console.WriteLine("Find the number of negative numbers in a matrix - enter 2\n");
+                    Console.WriteLine("Sort matrix elements from left to right - enter 3\n");
+                    Console.WriteLine("Sort matrix elements from right to left - enter 4\n");
+                    Console.WriteLine("Inversion of matrix elements - enter 5\n");
+                    Console.WriteLine("Introduce a new array - enter 6\n");
+                    string chose = Console.ReadLine();
+
+                    switch (chose)
+                    {
+                        //Find the number of positive numbers in a matrix
+                        case "1":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Clear();
                             {
-                                for (int x = 0; x < height; x++)
+
+                                for (int y = 0; y < arr2DimLen; y++)
                                 {
-                                    if (mass[y, x] > 0)
+                                    for (int x = 0; x < arr1DimLen; x++)
                                     {
-                                        value++;
+                                        if (mass[x, y] > 0)
+                                        {
+                                            positiveNumbers++;
+                                        }
                                     }
+
                                 }
+                                Console.WriteLine($"Find the number of positive numbers in a matrix= {positiveNumbers}");
+
+                                break;
                             }
-                            Console.WriteLine($"Find the number of positive numbers in a matrix= {value}");
+
+                        //Find the number of negative numbers in a matrix
+                        case "2":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Clear();
+                            {
+
+                                for (int y = 0; y < arr2DimLen; y++)
+                                {
+                                    for (int x = 0; x < arr1DimLen; x++)
+                                    {
+                                        if (mass[x, y] < 0)
+                                        {
+                                            negativeNumbers++;
+                                        }
+                                    }
+
+                                }
+                                Console.WriteLine($"Find the number of negative numbers in a matrix= {negativeNumbers}");
+
+                                break;
+                            }
+
+                        //Sort matrix elements from left to right
+                        case "3":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Clear();
+
+                            {
+                                sortMax(mass);
+                            }
+                            result(mass);
 
                             break;
-                        }
-                    case "2":
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Clear();
-                        {
-                            for (int y = 0; y < width; y++)
+                        case "4":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Clear();
+
                             {
-                                for (int x = 0; x < height; x++)
-                                {
-                                    if (mass[x, y] < 0)
-                                    {
-                                        value1++;
-                                    }
-                                }
+                                sortMin(mass);
                             }
-                            Console.WriteLine($"Find the number of negative numbers in a matrix= {value1}");
+                            result(mass);
 
                             break;
-                        }
-                    case "3":
-                        {
-                            sortMax(mass);
-                        }
-                        for (int y = 0; y < height; y++)
-                        {
-                            for (int x = 0; x < width; x++)
+                        //Inversion of matrix elements
+                        case "5":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Clear();
                             {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write(mass[y, x] + "\t");
-                            }
-                        }
 
-                        break;
-                    case "4":
-                        {
-                            sortMin(mass);
-                        }
-                        for (int y = 0; y < height; y++)
-                        {
-                            for (int x = 0; x < width; x++)
+                                for (int y = arr1DimLen - 1; y >= 0; y--)
+                                {
+                                    for (int x = arr2DimLen - 1; x >= 0; x--)
+                                    {
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.Write(mass[y, x] + "\t");
+                                    }
+                                    Console.WriteLine();
+                                }
+
+                            }
+
+                            break;
+                        //Introduce a new array 
+                        case "6":
+
                             {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write(mass[y, x] + "\t");
+                                exit = false;
                             }
-                        }
 
-                        break;
-                    case "6":
-                        {
-                            Console.WriteLine("Exit");
-                            exit = false;
-                        }
-                        break;
+                            break;
+                    }
                 }
-                Console.WriteLine("press any button to continue");
-                Console.ReadKey();
                 Console.Clear();
             }
         }
