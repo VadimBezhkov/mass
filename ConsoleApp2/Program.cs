@@ -180,6 +180,17 @@ namespace ConsoleApp2
             }
             return negativeNumbers;
         }
+        //array actions menu
+        static void Print()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Find the number of positive numbers in a matrix - enter 1\n");
+            Console.WriteLine("Find the number of negative numbers in a matrix - enter 2\n");
+            Console.WriteLine("Sort matrix elements from left to right - enter 3\n");
+            Console.WriteLine("Sort matrix elements from right to left - enter 4\n");
+            Console.WriteLine("Inversion of matrix elements - enter 5\n");
+            Console.WriteLine("Introduce a new array - enter 6\n");
+        }
         static void Main(string[] args)
         {
             while (true)
@@ -217,14 +228,8 @@ namespace ConsoleApp2
 
                 while (exit)
                 {
-                    //array actions menu
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Find the number of positive numbers in a matrix - enter 1\n");
-                    Console.WriteLine("Find the number of negative numbers in a matrix - enter 2\n");
-                    Console.WriteLine("Sort matrix elements from left to right - enter 3\n");
-                    Console.WriteLine("Sort matrix elements from right to left - enter 4\n");
-                    Console.WriteLine("Inversion of matrix elements - enter 5\n");
-                    Console.WriteLine("Introduce a new array - enter 6\n");
+                    
+                    Print();
                     string chose = Console.ReadLine();
 
                     switch (chose)
