@@ -24,7 +24,6 @@ namespace ConsoleApp2
                 Console.WriteLine();
             }
         }
-
         //sort an array in ascending order
         static void sortMax(double[,] mass)
         {
@@ -115,6 +114,7 @@ namespace ConsoleApp2
             {
                 var input = Console.ReadLine();
                 var condition = double.TryParse(input, out number);
+
                 if (condition)
                 {
                     return number;
@@ -123,16 +123,19 @@ namespace ConsoleApp2
                 {
                     Console.WriteLine("Error enter number");
                 }
+
             }
         }
         //input validation
         static int check()
         {
             int number;
+
             while (true)
             {
                 var input = Console.ReadLine();
                 var condition = int.TryParse(input, out number);
+
                 if (condition)
                 {
                     return number;
@@ -141,7 +144,41 @@ namespace ConsoleApp2
                 {
                     Console.WriteLine("Error enter number");
                 }
+
             }
+        }
+        // Finding the number of positive numbers
+        static int PositiveNumbers(int arr2DimLen, int arr1DimLen, double[,] mass)
+        {
+            int positiveNumbers=0;
+            for (int y = 0; y < arr2DimLen; y++)
+            {
+                for (int x = 0; x < arr1DimLen; x++)
+                {
+                    if (mass[x, y] > 0)
+                    {
+                        positiveNumbers++;
+                    }
+                }
+            }
+            return positiveNumbers;
+        }
+        // Finding the number of negative numbers
+        static int NegativeNumbers(int arr2DimLen, int arr1DimLen, double[,] mass)
+        {
+            int negativeNumbers = 0;
+
+            for (int y = 0; y < arr2DimLen; y++)
+            {
+                for (int x = 0; x < arr1DimLen; x++)
+                {
+                    if (mass[x, y] < 0)
+                    {
+                        negativeNumbers++;
+                    }
+                }
+            }
+            return negativeNumbers;
         }
         static void Main(string[] args)
         {
@@ -157,8 +194,6 @@ namespace ConsoleApp2
                 Console.Clear();
 
                 //variable declaration
-                int positiveNumbers = 0;
-                int negativeNumbers = 0;
                 var exit = true;
 
                 //and reading columns and rows and reading columns and rows
@@ -199,41 +234,18 @@ namespace ConsoleApp2
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
                             {
-
-                                for (int y = 0; y < arr2DimLen; y++)
-                                {
-                                    for (int x = 0; x < arr1DimLen; x++)
-                                    {
-                                        if (mass[x, y] > 0)
-                                        {
-                                            positiveNumbers++;
-                                        }
-                                    }
-
-                                }
-                                Console.WriteLine($"Find the number of positive numbers in a matrix= {positiveNumbers}");
+                                int countPositive = PositiveNumbers(arr2DimLen, arr1DimLen,mass);
+                                Console.WriteLine($"Find the number of positive numbers in a matrix= {countPositive}");
 
                                 break;
                             }
-
                         //Find the number of negative numbers in a matrix
                         case "2":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
                             {
-
-                                for (int y = 0; y < arr2DimLen; y++)
-                                {
-                                    for (int x = 0; x < arr1DimLen; x++)
-                                    {
-                                        if (mass[x, y] < 0)
-                                        {
-                                            negativeNumbers++;
-                                        }
-                                    }
-
-                                }
-                                Console.WriteLine($"Find the number of negative numbers in a matrix= {negativeNumbers}");
+                                int countNegative = NegativeNumbers(arr2DimLen, arr1DimLen, mass);
+                                Console.WriteLine($"Find the number of negative numbers in a matrix= {countNegative}");
 
                                 break;
                             }
