@@ -24,8 +24,8 @@ namespace ConsoleApp2
                 Console.WriteLine();
             }
         }
-        //sort an array in ascending order
-        static void sortMax(double[,] mass)
+        //sort an array 
+        static void SortMax(double[,] mass, bool sortMax)
         {
 
             int arr1DimLen = mass.GetLength(0);
@@ -40,65 +40,51 @@ namespace ConsoleApp2
                         isLastRow = true;
                     for (int j = 0; j < arr2DimLen; j++)
                     {
-                        if (j < arr2DimLen - 1)
+                        if (sortMax)
                         {
-                            if (mass[i, j] > mass[i, j + 1])
+                            if (j < arr2DimLen - 1)
                             {
-                                double temp = mass[i, j];
-                                mass[i, j] = mass[i, j + 1];
-                                mass[i, j + 1] = temp;
-                            }
-                        }
-                        else
-                        {
-                            if (!isLastRow)
-                            {
-                                if (mass[i, j] > mass[i + 1, 0])
+                                if (mass[i, j] > mass[i, j + 1])
                                 {
                                     double temp = mass[i, j];
-                                    mass[i, j] = mass[i + 1, 0];
-                                    mass[i + 1, 0] = temp;
+                                    mass[i, j] = mass[i, j + 1];
+                                    mass[i, j + 1] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (!isLastRow)
+                                {
+                                    if (mass[i, j] > mass[i + 1, 0])
+                                    {
+                                        double temp = mass[i, j];
+                                        mass[i, j] = mass[i + 1, 0];
+                                        mass[i + 1, 0] = temp;
+                                    }
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-        //sorting the array in descending order
-        static void sortMin(double[,] mass)
-        {
-            int arr1DimLen = mass.GetLength(0);
-            int arr2DimLen = mass.GetLength(1);
-
-            for (int n = 0; n < mass.Length; n++)
-            {
-                bool isLastRow = false;
-                for (int i = 0; i < arr1DimLen; i++)
-                {
-                    if (i == arr1DimLen - 1)
-                        isLastRow = true;
-                    for (int j = 0; j < arr2DimLen; j++)
-                    {
-                        if (j < arr2DimLen - 1)
-                        {
-                            if (mass[i, j] < mass[i, j + 1])
-                            {
-                                double temp = mass[i, j];
-                                mass[i, j] = mass[i, j + 1];
-                                mass[i, j + 1] = temp;
-                            }
-                        }
-
                         else
                         {
-                            if (!isLastRow)
+                            if (j < arr2DimLen - 1)
                             {
-                                if (mass[i, j] < mass[i + 1, 0])
+                                if (mass[i, j] < mass[i, j + 1])
                                 {
                                     double temp = mass[i, j];
-                                    mass[i, j] = mass[i + 1, 0];
-                                    mass[i + 1, 0] = temp;
+                                    mass[i, j] = mass[i, j + 1];
+                                    mass[i, j + 1] = temp;
+                                }
+                            }
+                            else
+                            {
+                                if (!isLastRow)
+                                {
+                                    if (mass[i, j] < mass[i + 1, 0])
+                                    {
+                                        double temp = mass[i, j];
+                                        mass[i, j] = mass[i + 1, 0];
+                                        mass[i + 1, 0] = temp;
+                                    }
                                 }
                             }
                         }
@@ -231,6 +217,7 @@ namespace ConsoleApp2
 
                 //variable declaration
                 var exit = true;
+                bool sortMax = true;
 
                 //and reading columns and rows and reading columns and rows
                 double[,] mass = new double[elements1, elements2];
@@ -277,8 +264,9 @@ namespace ConsoleApp2
                         case "3":
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
+                            
 
-                            sortMax(mass);
+                            SortMax(mass,sortMax);
 
                             Result(mass);
 
@@ -287,7 +275,8 @@ namespace ConsoleApp2
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Clear();
 
-                            sortMin(mass);
+                            sortMax = false;
+                            SortMax(mass, sortMax);
 
                             Result(mass);
 
